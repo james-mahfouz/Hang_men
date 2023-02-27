@@ -17,7 +17,7 @@ window.onload = function(){
     const generate_word =(category)=>{
         const random = Math.floor(Math.random() * 20)
         game_word = words [category][random]
-        return game_word
+        return game_word.toLowerCase()
     }
 
     fruit.addEventListener('click', function(){
@@ -31,6 +31,7 @@ window.onload = function(){
     })
     space.addEventListener('click', function(){
         game_word = generate_word("space")
+        console.log(game_word)
         let array=[]
         for(let i = 0;i<game_word.length;i++){
             array.push("_")
@@ -39,14 +40,17 @@ window.onload = function(){
     })
     job.addEventListener('click', function(){
         game_word = generate_word("job")
+        console.log(game_word)
         let array=[]
         for(let i = 0;i<game_word.length;i++){
             array.push("_")
         }
         word_length.innerHTML=array.join(" ")
     })
+
     country.addEventListener('click', function(){
         game_word = generate_word("country")
+        console.log(game_word)
         let array=[]
         for(let i = 0;i<game_word.length;i++){
             array.push("_")
@@ -64,14 +68,14 @@ window.onload = function(){
     
     const draw_second = () =>{
         ctx.beginPath()
-        ctx.moveTo(50, 200)
+        ctx.moveTo(50, 30)
         ctx.lineTo(220, 30)
         ctx.stroke()
     }
 
     const draw_third = () =>{
         ctx.beginPath()
-        ctx.moveTo(50, 200)
+        ctx.moveTo(220, 30)
         ctx.lineTo(220, 50)
         ctx.stroke()
     }
@@ -128,28 +132,34 @@ window.onload = function(){
     
     input_button = document.getElementById('input_button')
     let wrong_char = document.getElementById('wrong_char')
+    entered_input_array=[]
     let wrong_input = 0
 
     input_button.addEventListener('click', function(){
-        console.log("entered event")
-        user_input = document.getElementById('user_input').value
-        if(user_input.length!=1){
+        input = document.getElementById('user_input')
+        user_input = input.value
+        input.value=""
+        if(game_word==undefined){
+            alert("generate a word first")
+        }
+        else if(user_input.length!=1){
             alert("Enter one character")
+        }
+        else if(entered_input_array.includes(user_input)){
+            alert("you already tried this number")
         }
         else{ 
             let index_array=[] 
             let is_in_string=false
             for(let i = 0; i<game_word.length; i++){
-                console.log(game_word[i])
                 if(user_input==game_word[i]){
                     is_in_string=true
                     index_array.push(i)
                 }
             }
-            console.log(is_in_string)
 
             if(is_in_string==false){
-                console.log("ent")
+                
                 switch(wrong_input){
                     case 0:draw_first()
                     break
@@ -171,9 +181,31 @@ window.onload = function(){
                     break
                     case 9:draw_tenth()
                     break
+                    case 10:
+                        alert("you lost")
+                        word_length.innerHTML=game_word
+                        wrong_char.innerHTML=""
                 }
                 wrong_input +=1
                 wrong_char.innerHTML+=user_input+" "
+                entered_input_array.push(user_input)
+            }
+            else{
+                entered_input_array.push(user_input)
+                let new_word = word_length.innerHTML.split(" ")
+                for(let i =0 ;i<game_word.length;i++){
+                    if(index_array.includes(i)){
+                        new_word[i] = user_input
+                    }
+                }
+                word_length.innerHTML=new_word.join(" ")
+                if(!new_word.includes("_")){
+                    alert("Congrats you won")
+                    setTimeout(function(){
+                        location.reload()
+                    }, 5000)
+                }
+                
             }
         }
     })
