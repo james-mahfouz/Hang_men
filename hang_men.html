@@ -1,0 +1,38 @@
+<!DOCTYPE html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="hang_men.css">
+    <script src="hang_men.js"></script>
+    <title>Hang men</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Start by generating a word</h1>
+        <h2>Choose a category</h2>
+        <section class="buttons">
+            <button type="submit" id="fruit">Fruit</button>
+            <button type="submit" id="job">Jobs</button>
+            <button type="submit" id="country">Countries</button>
+            <button type="submit" id="space">Space</button>
+        </section>
+
+        <section class="input">
+            <h3>Enter a character</h3>
+            <input type="text" id="user_input">
+            <button id="input_button">Enter</button>
+        </section>
+
+        <section class="game">
+            <canvas id="canvas"></canvas>   
+            <div id="word"></div>
+        </section>
+
+        <section>
+            <div id="wrong_char">a b c d e f g h</div>
+        </section>
+    </div>
+
+</body>
+</html>
