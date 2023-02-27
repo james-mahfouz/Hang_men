@@ -8,6 +8,7 @@ body{
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    align-items: center;
     background-image: url('https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-040.jpg');
 }
 
@@ -16,8 +17,10 @@ body{
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    width: 700px;
-    margin-top: 50px;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
     background-color: rgba(50, 50, 50, 0.2);
 }
 
@@ -39,6 +42,7 @@ body{
     padding: 6px 16px;
     position: relative;
     text-align: center;
+    margin-top: 20px;
 }
 
 #word{
@@ -48,4 +52,11 @@ body{
 #canvas{
     width: 400px;
     height: 200px;
+    background-color: #fff;
+}
+
+.input input{
+    height: max-content;
+    background-color: #404040;
+    color: #fff;
 }

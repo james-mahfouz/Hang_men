@@ -185,6 +185,9 @@ window.onload = function(){
                         alert("you lost")
                         word_length.innerHTML=game_word
                         wrong_char.innerHTML=""
+                        setTimeout(function(){
+                            location.reload()
+                        }, 3000)
                 }
                 wrong_input +=1
                 wrong_char.innerHTML+=user_input+" "
@@ -203,7 +206,7 @@ window.onload = function(){
                     alert("Congrats you won")
                     setTimeout(function(){
                         location.reload()
-                    }, 5000)
+                    }, 3000)
                 }
                 
             }
