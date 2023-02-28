@@ -7,6 +7,8 @@ window.onload = function(){
     let country = document.getElementById('country')
     let word_length = document.getElementById('word')
     let game_word
+
+    //creating the dictionary of words
     const words = {
         "fruit": ["apple", "banana", "orange", "pear", "kiwi", "pineapple", "mango", "watermelon", "strawberry", "grape", "cherry", "blueberry", "raspberry", "lemon", "lime", "peach", "plum", "pomegranate", "avocado", "coconut"],
         "space": ["planet", "star", "galaxy", "comet", "asteroid", "nebula", "black hole", "satellite", "spaceship", "moon", "asteroidbelt", "gravity", "orbit", "universe", "cosmos", "alien", "meteor", "supernova", "telescope", "astronaut"],
@@ -14,16 +16,20 @@ window.onload = function(){
         "country": ["Canada", "UnitedStates", "Mexico", "Brazil", "Argentina", "Chile", "Peru", "Colombia", "Ecuador", "Spain", "France", "Germany", "United Kingdom", "Italy", "Russia", "China", "Japan", "Australia", "South Africa", "Egypt"]
     }
 
+    //function to generate a random wors
     const generate_word =(category)=>{
         const random = Math.floor(Math.random() * 20)
         game_word = words [category][random]
+        console.log(game_word)
         return game_word.toLowerCase()
     }
 
+    //event listeners to see which category the user will choose
     fruit.addEventListener('click', function(){
         game_word = generate_word("fruit")
-        console.log(game_word)
         let array=[]
+        //displaying the size of the word on the page by underscore by pushing in the array
+        //underscores as much as the character length then joining the array in string by spaces
         for(let i = 0;i<game_word.length;i++){
             array.push("_")
         }
@@ -31,7 +37,6 @@ window.onload = function(){
     })
     space.addEventListener('click', function(){
         game_word = generate_word("space")
-        console.log(game_word)
         let array=[]
         for(let i = 0;i<game_word.length;i++){
             array.push("_")
@@ -40,7 +45,6 @@ window.onload = function(){
     })
     job.addEventListener('click', function(){
         game_word = generate_word("job")
-        console.log(game_word)
         let array=[]
         for(let i = 0;i<game_word.length;i++){
             array.push("_")
@@ -50,7 +54,6 @@ window.onload = function(){
 
     country.addEventListener('click', function(){
         game_word = generate_word("country")
-        console.log(game_word)
         let array=[]
         for(let i = 0;i<game_word.length;i++){
             array.push("_")
@@ -58,7 +61,7 @@ window.onload = function(){
         word_length.innerHTML=array.join(" ")
     })
 
-
+    //functions to draw the hang-men in canvas
     const draw_first = () =>{
         ctx.beginPath()
         ctx.moveTo(50, 200)
@@ -132,13 +135,14 @@ window.onload = function(){
     
     input_button = document.getElementById('input_button')
     let wrong_char = document.getElementById('wrong_char')
-    entered_input_array=[]
-    let wrong_input = 0
+    let entered_input_array=[]//to keep track of used character
+    let wrong_input = 0//for the switch case
 
     input_button.addEventListener('click', function(){
         input = document.getElementById('user_input')
         user_input = input.value
         input.value=""
+
         if(game_word==undefined){
             alert("generate a word first")
         }
@@ -148,10 +152,11 @@ window.onload = function(){
         else if(entered_input_array.includes(user_input)){
             alert("you already tried this number")
         }
-        else{ 
-            let index_array=[] 
-            let is_in_string=false
+        else{ //if the user input is correct
+            let index_array=[] //if the input is in the word will keep track where it is
+            let is_in_string=false 
             for(let i = 0; i<game_word.length; i++){
+                
                 if(user_input==game_word[i]){
                     is_in_string=true
                     index_array.push(i)
