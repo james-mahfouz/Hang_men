@@ -6,6 +6,6 @@
 
 This a little Hang men game that I created using HTML CSS and Javascript 
 
-## Authors
+## Author
 
 - James Mahfouz
