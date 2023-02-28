@@ -185,8 +185,6 @@ window.onload = function(){
                     case 8:draw_ninth()
                     break
                     case 9:draw_tenth()
-                    break
-                    case 10:
                         alert("you lost")
                         word_length.innerHTML=game_word
                         wrong_char.innerHTML=""
