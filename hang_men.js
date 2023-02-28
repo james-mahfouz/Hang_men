@@ -155,16 +155,16 @@ window.onload = function(){
         else{ //if the user input is correct
             let index_array=[] //if the input is in the word will keep track where it is
             let is_in_string=false 
+    
             for(let i = 0; i<game_word.length; i++){
-                
                 if(user_input==game_word[i]){
                     is_in_string=true
                     index_array.push(i)
                 }
             }
-
+            //if user input is false we will enter a switch case in the wrong input which will increment 
+            //at the end of the code 
             if(is_in_string==false){
-                
                 switch(wrong_input){
                     case 0:draw_first()
                     break
@@ -192,26 +192,29 @@ window.onload = function(){
                         wrong_char.innerHTML=""
                         setTimeout(function(){
                             location.reload()
-                        }, 3000)
+                        }, 3000)//after the game finishes the page will reload after 3 seconds to reset everything 
                 }
                 wrong_input +=1
-                wrong_char.innerHTML+=user_input+" "
-                entered_input_array.push(user_input)
+                wrong_char.innerHTML += user_input+" "//display the wrong input used
+                entered_input_array.push(user_input)//add the input to the array to prevent anothe use
             }
-            else{
+            else{//if input is true
                 entered_input_array.push(user_input)
-                let new_word = word_length.innerHTML.split(" ")
+                let new_word = word_length.innerHTML.split(" ")//create an array of the word that we already got
+                //replace the underscore by the input at the index where we found it in the game_word
                 for(let i =0 ;i<game_word.length;i++){
                     if(index_array.includes(i)){
                         new_word[i] = user_input
                     }
                 }
+                //join the array and redisplay the new word
                 word_length.innerHTML=new_word.join(" ")
+                //check if the user won
                 if(!new_word.includes("_")){
                     alert("Congrats you won")
                     setTimeout(function(){
                         location.reload()
-                    }, 3000)
+                    }, 3000)//reload page if he win after 3 seconds for reset
                 }
                 
             }
